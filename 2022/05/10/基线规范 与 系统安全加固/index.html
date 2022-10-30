@@ -1,0 +1,359 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="我要干饭！">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.3.0">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="http://xjuun.github.io">
+    <!--SEO-->
+
+<meta name="keywords" content="安全排查" />
+
+
+<meta name="description" content="Linux基线规范账号管理和授权
+12345检查特殊账号，是否存在空密码的账户和 root 权限账户禁用或删除无用账号添加口令策略:/etc/login.defs修改配置文件，设置过期时间、连续..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    基线规范与系统安全加固 |
+    
+    我要干饭！
+</title>
+
+<link rel="alternate" href="/atom.xml" title="我要干饭！" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7.css">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+    
+<div class="hide">
+    <script type="text/javascript">
+    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</div>
+
+
+
+
+    
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='我要干饭！'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://xjuun.github.io">
+                        我要干饭！</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa "></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/CTF/"><i class="fa "></i>
+                                CTF</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/网安笔记/"><i class="fa "></i>
+                                网安笔记</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/语言学习/"><i class="fa "></i>
+                                语言学习</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/小爱好/"><i class="fa "></i>
+                                小爱好</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/工具/"><i class="fa "></i>
+                                工具</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/随笔/"><i class="fa "></i>
+                                随笔</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa "></i>
+                                时间轴</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/about/"><i class="fa "></i>
+                                关于我</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="基线规范与系统安全加固">
+            
+            基线规范与系统安全加固
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E7%BD%91%E5%AE%89%E7%AC%94%E8%AE%B0/">网安笔记</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/%E5%AE%89%E5%85%A8%E6%8E%92%E6%9F%A5/" rel="tag">安全排查</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2022/05/10</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="Linux基线规范"><a href="#Linux基线规范" class="headerlink" title="Linux基线规范"></a>Linux基线规范</h2><p><strong>账号管理和授权</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">检查特殊账号，是否存在空密码的账户和 root 权限账户</span><br><span class="line">禁用或删除无用账号</span><br><span class="line">添加口令策略:/etc/login.defs修改配置文件，设置过期时间、连续认证失败次数</span><br><span class="line">禁止 root 远程登录，限制root用户直接登录。</span><br><span class="line">检查 su 权限。vi /etc/pam.d/su添加auth required pam_wheel.so group=test</span><br></pre></td></tr></table></figure>
+
+<p><strong>服务</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">关闭不必要的服务</span><br><span class="line">SSH 服务安全</span><br><span class="line">不允许 root 账号直接登录系统，PermitRootLogin=no</span><br><span class="line">修改 SSH 使用的协议版本为 <span class="number">2</span></span><br><span class="line">修改允许密码错误次数（默认 <span class="number">6</span> 次），MaxAuthTries=<span class="number">3</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>文件系统</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">设置 umask 值 vi /etc/profile 添加行 umask <span class="number">027</span></span><br><span class="line">设置登录超时 vi /etc/profile 修改配置文件，将以 TMOUT= 开头的行注释，设置为 TMOUT=<span class="number">180</span></span><br><span class="line">日志</span><br><span class="line"></span><br><span class="line">启用 syslogd 日志，配置日志目录权限，或者设置日志服务器</span><br><span class="line"></span><br><span class="line">记录所有用户的登录和操作日志，通过脚本代码实现记录所有用户的登录操作日志，防止出现安全事件后无据可查</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>IP 协议安全要求</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">远程登录取消 telnet 采用 ssh</span><br><span class="line">设置 /etc/hosts.allow 和 deny</span><br><span class="line">禁止 ICMP 重定向</span><br><span class="line">禁止源路由转发</span><br><span class="line">防 ssh 破解，<span class="title function_ invoke__">iptables</span> (对已经建立的所有链接都放行，限制每分钟连接 ssh 的次数)+ <span class="title function_ invoke__">denyhost</span> (添加 ip 拒绝访问)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Windows-安全基线检查"><a href="#Windows-安全基线检查" class="headerlink" title="Windows 安全基线检查"></a>Windows 安全基线检查</h2><p>主要包括五个方面：身份鉴别、访问控制、安全审计、资源控制、剩余信息保护</p>
+<p><strong>身份鉴别</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">更改缺省账户</span><br><span class="line"></span><br><span class="line">检查Guest用户是否禁用</span><br><span class="line"></span><br><span class="line">密码复杂性要求</span><br><span class="line"></span><br><span class="line">密码长度最小不能小于<span class="number">8</span>位</span><br></pre></td></tr></table></figure>
+
+<p><strong>访问控制</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">共享账户检查</span><br><span class="line"></span><br><span class="line">远程关机授权</span><br><span class="line"></span><br><span class="line">本地关机</span><br><span class="line"></span><br><span class="line">授权帐户登陆</span><br></pre></td></tr></table></figure>
+
+<p><strong>安全审计</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">用户登录日志记录</span><br><span class="line"></span><br><span class="line">系统日志完备性检查</span><br><span class="line"></span><br><span class="line">登录超时管理</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>资源控制</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">登录超时管理</span><br><span class="line"></span><br><span class="line">远程登录超时配置</span><br></pre></td></tr></table></figure>
+
+<p><strong>剩余信息保护</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">不显示上次的用户名</span><br><span class="line"></span><br><span class="line">关机前清除虚拟内存页面</span><br><span class="line"></span><br><span class="line">不启用可还原的加密来存储密码</span><br></pre></td></tr></table></figure>
+
+<p><strong>中间件基线规范（APACHE）</strong></p>
+<p><strong>配置</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">账号</span><br><span class="line">授权</span><br><span class="line">日志</span><br><span class="line">session 过期时间（防ddos）</span><br><span class="line">绑定监听地址</span><br></pre></td></tr></table></figure>
+
+<p><strong>禁止</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">目录权限</span><br><span class="line">访问外部文件</span><br><span class="line">CGI</span><br><span class="line">非法HTTP方法（PUT DELETE）</span><br></pre></td></tr></table></figure>
+
+<p><strong>隐藏</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">服务版本号</span><br><span class="line">重定向错误页面</span><br></pre></td></tr></table></figure>
+
+<p><strong>删除</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">配置文件</span><br><span class="line">默认安装的无用文件</span><br></pre></td></tr></table></figure>
+
+<h2 id="Linux、Windows安全加固-IIS-服务器应该做哪些方面的保护措施？"><a href="#Linux、Windows安全加固-IIS-服务器应该做哪些方面的保护措施？" class="headerlink" title="Linux、Windows安全加固 IIS 服务器应该做哪些方面的保护措施？"></a>Linux、Windows安全加固 IIS 服务器应该做哪些方面的保护措施？</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">保持 Windows 升级</span><br><span class="line">使用 IIS 防范工具</span><br><span class="line">移除缺省的 Web 站点</span><br><span class="line">如果你并不需要 FTP 和 SMTP 服务，请卸载它们</span><br><span class="line">有规则地检查你的管理员组和服务:</span><br><span class="line">严格控制服务器的写访问权限</span><br><span class="line">设置复杂的密码</span><br><span class="line">减少/排除 Web 服务器上的共享</span><br><span class="line">禁用 TCP/IP 协议中的 NetBIOS</span><br><span class="line">使用 TCP 端口阻塞</span><br><span class="line">仔细检查 .bat 和 .exe 文件：每周搜索一次 .bat</span><br><span class="line">管理 IIS 目录安全</span><br><span class="line">使用 NTFS 安全</span><br><span class="line">管理用户账户</span><br><span class="line">审计你的 Web 服务器</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/2022/05/10/xss%E4%B8%8E%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" class="pre-post btn btn-default" title='xss与文件上传'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            xss与文件上传</span>
+    </a>
+    
+    
+    <a href="/2022/05/10/%E5%90%8E%E9%97%A8%E5%AE%89%E5%85%A8%E6%8E%92%E6%9F%A5%EF%BC%88windows%E4%B8%8Elinux%E5%85%A5%E4%BE%B5%E6%8E%92%E6%9F%A5%EF%BC%89/" class="next-post btn btn-default" title='后门安全排查（Windows与Linux入侵排查）'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            后门安全排查（Windows与Linux入侵排查）</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<p>评论系统未开启，无法评论！</p>
+
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E5%9F%BA%E7%BA%BF%E8%A7%84%E8%8C%83"><span class="toc-text">Linux基线规范</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows-%E5%AE%89%E5%85%A8%E5%9F%BA%E7%BA%BF%E6%A3%80%E6%9F%A5"><span class="toc-text">Windows 安全基线检查</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E3%80%81Windows%E5%AE%89%E5%85%A8%E5%8A%A0%E5%9B%BA-IIS-%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BA%94%E8%AF%A5%E5%81%9A%E5%93%AA%E4%BA%9B%E6%96%B9%E9%9D%A2%E7%9A%84%E4%BF%9D%E6%8A%A4%E6%8E%AA%E6%96%BD%EF%BC%9F"><span class="toc-text">Linux、Windows安全加固 IIS 服务器应该做哪些方面的保护措施？</span></a></li></ol>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2021
+                    
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="/assets/tagcanvas.min.js?rev=2.9.js"></script>
+
+<script>
+var tagOption = {
+    textColour: '#444', // 字体颜色
+    outlineMethod: 'block', // 选中模式
+    outlineColour: '#FFDAB9', // 选中模式的颜色
+    interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+    textHeight: 13,
+    outlineRadius: 3,
+    freezeActive: true || '', // 选中的标签是否继续滚动
+    frontSelect: true || '', // 不选标签云后部的标签
+    initial: [0.1, -0.1],
+    depth: 0.5,
+    decel: 0.95,
+    maxSpeed: 0.03,
+    reverse: true || '', // 是否反向触发
+    fadeIn: 500, // 进入动画时间
+    wheelZoom: false || '' // 是否启用鼠标滚轮
+}
+TagCanvas.Start('tag-cloud-3d', '', tagOption);
+</script>
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+</body>
+</html>

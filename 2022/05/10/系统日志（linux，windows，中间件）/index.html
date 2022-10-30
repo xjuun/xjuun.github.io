@@ -1,0 +1,331 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="我要干饭！">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.3.0">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="http://xjuun.github.io">
+    <!--SEO-->
+
+<meta name="keywords" content="日志" />
+
+
+<meta name="description" content="Windows主要有以下三类日志记录系统事件：• 应用程序日志• 系统日志• 安全日志系统和应用程序日志存储着故障排除信息，对于系统管理员更为有用。 安全日志记录着事件审计信息，包括用户验证（登..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    系统日志（Linux，Windows，中间件） |
+    
+    我要干饭！
+</title>
+
+<link rel="alternate" href="/atom.xml" title="我要干饭！" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7.css">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+    
+<div class="hide">
+    <script type="text/javascript">
+    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</div>
+
+
+
+
+    
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='我要干饭！'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://xjuun.github.io">
+                        我要干饭！</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa "></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/CTF/"><i class="fa "></i>
+                                CTF</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/网安笔记/"><i class="fa "></i>
+                                网安笔记</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/语言学习/"><i class="fa "></i>
+                                语言学习</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/小爱好/"><i class="fa "></i>
+                                小爱好</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/工具/"><i class="fa "></i>
+                                工具</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/随笔/"><i class="fa "></i>
+                                随笔</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa "></i>
+                                时间轴</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/about/"><i class="fa "></i>
+                                关于我</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="系统日志（Linux，Windows，中间件）">
+            
+            系统日志（Linux，Windows，中间件）
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E7%BD%91%E5%AE%89%E7%AC%94%E8%AE%B0/">网安笔记</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/%E6%97%A5%E5%BF%97/" rel="tag">日志</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2022/05/10</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>Windows主要有以下三类日志记录系统事件：<br>• 应用程序日志<br>• 系统日志<br>• 安全日志<br>系统和应用程序日志存储着故障排除信息，对于系统管理员更为有用。 安全日志记录着事件审计信息，包括用户验证（登录、远程访等）和特定用户在认证后对系统做了什么，对于调查人员而言，更有帮助。</p>
+<h2 id="应用程序日志"><a href="#应用程序日志" class="headerlink" title="应用程序日志"></a>应用程序日志</h2><p>记录操作系统组件产生的事件，主要包括驱动程序、系统组件和应用软件的崩溃以及数据丢失错误等。系统日志中记录的时间类型由Windows NT/2000操作系统预先定义。</p>
+<p>默认位置： %SystemRoot%\System32\Winevt\Logs\System.evtx</p>
+<h2 id="系统日志"><a href="#系统日志" class="headerlink" title="系统日志"></a>系统日志</h2><p>记录系统的安全审计事件，包含各种类型的登录日志、对象访问日志、进程追踪日志、特权使用、帐号管理、策略变更、系统事件。安全日志也是调查取证中最常用到的日志。默认设置下，安全性日志是关闭的，管理员可以使用组策略来启动安全性日志，或者在注册表中设置审核策略，以便当安全性日志满后使系统停止响应。</p>
+<p>默认位置：%SystemRoot%\System32\Winevt\Logs\Security.evtx</p>
+<h2 id="安全日志"><a href="#安全日志" class="headerlink" title="安全日志"></a>安全日志</h2><p>打开事件查看器，可以看到相关的事件ID和事件描述<br>事件ID对应的事件描述：</p>
+<p><img src="https://img-blog.csdnimg.cn/42fd287cd8a64279a4911d85449836ce.png" alt="在这里插入图片描述"></p>
+<p>登录成功可以看到一些可疑的账号登录，登录失败可以发现一些爆破的痕迹。</p>
+<p>点击筛选日志选项，输入事件ID，就可以搜索出特定事件，并且匹配出特定事件的次数。我们可以根据事件发生次数以及具体时间来推断系统遭受攻击的情况。比如可以根据登录失败次数发现哪些账号有爆破的嫌疑，根据系统开关机事件来断定是否是异常情况。</p>
+<h2 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h2><p>Linux日志的默认目录是/var/log/<br><strong>日志文件位置及说明</strong><br><img src="https://img-blog.csdnimg.cn/3d3e96e1553a49c4bd4c7f6585bcbc96.png" alt="在这里插入图片描述"></p>
+<p><strong>重点日志</strong><br>登录失败记录：/var/log/btmp //lastb(lastb是对应日志的直接系统命令)<br>最后一次登录：/var/log/lastlog //lastlog<br>登录成功记录: /var/log/wtmp //last<br>登录日志记录：/var/log/secure<br>目前登录用户信息：/var/run/utmp //w、who、users<br>历史命令记录：history<br>仅清理当前用户： history -c</p>
+<p><strong>Linux 自带日志分析命令</strong><br>分析Linux日志，基本不用其他三方工具。系统自带很多非常有用的命令。<br>常用的shell主要有：<br>grep<br>awk<br>sed<br>find<br>cat<br>more</p>
+<h2 id="web"><a href="#web" class="headerlink" title="web"></a>web</h2><p><strong>Linux</strong>中，web日志也在/var/log/下，进入对应web服务器目录既可查看。比如apache的日志就是在/var/log/apache/下，日志主要<br>access.log和error.log。<br><strong>Windows</strong>中，使用类似phpstudy的建站模块的话，可以直接在phpstudy目录下找到access.log<br>和error.log。如果是IIS日志，可以打开管理工具，选择其中的IIS服务器进行日志查看。</p>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><p>1、列出当天访问次数最多的IP命令：<br>cut -d- -f 1 log_file|uniq -c | sort -rn | head -20</p>
+<p>2、查看当天有多少个IP访问：<br>awk ‘{print $1}’ log_file|sort|uniq|wc -l</p>
+<p>3、查看某一个页面被访问的次数：<br>grep “/index.php” log_file | wc -l</p>
+<p>4、查看每一个IP访问了多少个页面：<br>awk ‘{++S[$1]} END {for (a in S) print a,S[a]}’ log_file</p>
+<p>5、将每个IP访问的页面数进行从小到大排序：<br>awk ‘{++S[$1]} END {for (a in S) print S[a],a}’ log_file | sort -n</p>
+<p>6、查看某一个IP访问了哪些页面：<br>grep ^111.111.111.111 log_file| awk ‘{print $1,$7}’</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/2022/05/10/%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AEredis/" class="pre-post btn btn-default" title='Redis未授权访问'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            Redis未授权访问</span>
+    </a>
+    
+    
+    <a href="/2022/05/10/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%B5%81%E7%A8%8B/" class="next-post btn btn-default" title='渗透测试流程'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            渗透测试流程</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<p>评论系统未开启，无法评论！</p>
+
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%97%A5%E5%BF%97"><span class="toc-text">应用程序日志</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%BF%97"><span class="toc-text">系统日志</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97"><span class="toc-text">安全日志</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux"><span class="toc-text">Linux</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#web"><span class="toc-text">web</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">常用命令</span></a></li></ol>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2021
+                    
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="/assets/tagcanvas.min.js?rev=2.9.js"></script>
+
+<script>
+var tagOption = {
+    textColour: '#444', // 字体颜色
+    outlineMethod: 'block', // 选中模式
+    outlineColour: '#FFDAB9', // 选中模式的颜色
+    interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+    textHeight: 13,
+    outlineRadius: 3,
+    freezeActive: true || '', // 选中的标签是否继续滚动
+    frontSelect: true || '', // 不选标签云后部的标签
+    initial: [0.1, -0.1],
+    depth: 0.5,
+    decel: 0.95,
+    maxSpeed: 0.03,
+    reverse: true || '', // 是否反向触发
+    fadeIn: 500, // 进入动画时间
+    wheelZoom: false || '' // 是否启用鼠标滚轮
+}
+TagCanvas.Start('tag-cloud-3d', '', tagOption);
+</script>
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+</body>
+</html>

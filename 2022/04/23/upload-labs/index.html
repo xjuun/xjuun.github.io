@@ -1,0 +1,353 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="我要干饭！">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.3.0">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="http://xjuun.github.io">
+    <!--SEO-->
+
+<meta name="keywords" content="文件上传" />
+
+
+<meta name="description" content="Pass -01（js检查）题目基于前端js过滤，只能上传图片格式的文件，所以我们用一句话木马，改后缀上传后，用burp抓包，修改文件后缀为php，然后用蚁剑连接，注意：文件没有上传在具体题目中..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    upload labs |
+    
+    我要干饭！
+</title>
+
+<link rel="alternate" href="/atom.xml" title="我要干饭！" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7.css">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+    
+<div class="hide">
+    <script type="text/javascript">
+    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</div>
+
+
+
+
+    
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='我要干饭！'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://xjuun.github.io">
+                        我要干饭！</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa "></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/CTF/"><i class="fa "></i>
+                                CTF</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/网安笔记/"><i class="fa "></i>
+                                网安笔记</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/语言学习/"><i class="fa "></i>
+                                语言学习</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/小爱好/"><i class="fa "></i>
+                                小爱好</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/工具/"><i class="fa "></i>
+                                工具</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/随笔/"><i class="fa "></i>
+                                随笔</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa "></i>
+                                时间轴</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/about/"><i class="fa "></i>
+                                关于我</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="upload labs">
+            
+            upload labs
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/CTF/">CTF</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" rel="tag">文件上传</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2022/04/23</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="Pass-01（js检查）"><a href="#Pass-01（js检查）" class="headerlink" title="Pass -01（js检查）"></a>Pass -01（js检查）</h2><p>题目基于前端js过滤，只能上传图片格式的文件，所以我们用一句话木马，改后缀上传后，用burp抓包，修改文件后缀为php，然后用蚁剑连接，<br>注意：<br>文件没有上传在具体题目中的文件夹中，所以我们在用蚁剑连接的时候，需要注意其地址</p>
+<h2 id="Pass-02（只验证Content-type）"><a href="#Pass-02（只验证Content-type）" class="headerlink" title="Pass -02（只验证Content-type）"></a>Pass -02（只验证Content-type）</h2><p>根据源代码我们可以发现，这一关是常见验证中的文件类型验证，也就是验证MIME信息<img src="https://img-blog.csdnimg.cn/95df5f6ef75d4f00aee2e6c7015a9df4.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGluanV1bg==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>所以这里可以直接上传php文件，然后用burp抓包，修改content-type为图片类型：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">image/jpeg、image/png、image/gif</span><br></pre></td></tr></table></figure>
+
+<p>然后蚁剑连接</p>
+<h2 id="Pass-03（黑名单绕过）"><a href="#Pass-03（黑名单绕过）" class="headerlink" title="Pass -03（黑名单绕过）"></a>Pass -03（黑名单绕过）</h2><p>先上传一个php文件，发现，上传设置了黑名单，<br><img src="https://img-blog.csdnimg.cn/323da57b21274f368edf925562892ab6.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGluanV1bg==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>查看源代码：<br><img src="https://img-blog.csdnimg.cn/3edb3a563d864bf8b2e7e56f1fd86b74.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGluanV1bg==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p>
+<p>所以可以通过上传其他可解析文件，<code>.phtml .phps .php5 .pht</code><br>前提是apache的httpd.conf中有配置代码</p>
+<p>所以我们这里可以上传一个<code>php3, phtml，phps .php5 .pht</code>文件实现绕过，注意这题当我们上传的时候文件名会变，我们可以在burp的repeater数据包回显中看，然后蚁剑连接</p>
+<p>注意：<br>上传后文件名会发生改变</p>
+<h2 id="Pass-04-（-htaccess绕过）"><a href="#Pass-04-（-htaccess绕过）" class="headerlink" title="Pass -04 （.htaccess绕过）"></a>Pass -04 （.htaccess绕过）</h2><p>查看源代码会发现其过滤了很多文件格式，<br>这时，我们可以尝试上传一个<code>.htaccess</code>配置文件，它将上传图片当作php代码进行解析，首先创建一个.htaccess文件，里面写上代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SetHandler application/x-httpd-php</span><br></pre></td></tr></table></figure>
+<p>然后我们可以直接上传一个改为图片格式的一句话木马，然后用蚁剑直接连接图片名，即可成功</p>
+<h2 id="Pass-05（大小写绕过）"><a href="#Pass-05（大小写绕过）" class="headerlink" title="Pass -05（大小写绕过）"></a>Pass -05（大小写绕过）</h2><p><img src="https://img-blog.csdnimg.cn/a17c96a20f9b4cec84d0d8144d61f773.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGluanV1bg==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述">与四题不同的是没有将其后缀转换为小写<br>因此可以使用大小绕过，上传文件后缀为<code>.Php</code>的文件，然后蚁剑连接即可</p>
+<h2 id="Pass-06（空格绕过）"><a href="#Pass-06（空格绕过）" class="headerlink" title="Pass -06（空格绕过）"></a>Pass -06（空格绕过）</h2><p>查看源码，对比前面的题，会发现这里没有删除文件首尾的空格，所以可以用空格进行绕过<br>我们上次文件尝试抓包在文件名后面加一个空格<br>注意：如果我们是在上传前修改文件名的时候加，上传的时候会被自动去掉，所以我们这里需要抓包，然后添加空格</p>
+<h2 id="Pass-07（点绕过）"><a href="#Pass-07（点绕过）" class="headerlink" title="Pass -07（点绕过）"></a>Pass -07（点绕过）</h2><p>观察对比前面关卡的源代码，可以发现其没有对点进行过滤，所以上传php文件抓包后在其后缀后面添加一个<code>.</code>,完成绕过</p>
+<h2 id="Pass-08（-DATA绕过）"><a href="#Pass-08（-DATA绕过）" class="headerlink" title="Pass -08（::$DATA绕过）"></a>Pass -08（::$DATA绕过）</h2><p>观察对比前面关卡的源代码，可以发现其没有对点进行过滤，所以上传php文件抓包后在其后缀后面添加一个<code>::$DATA</code>,完成绕过</p>
+<h2 id="Pass-09（拼接绕过）"><a href="#Pass-09（拼接绕过）" class="headerlink" title="Pass -09（拼接绕过）"></a>Pass -09（拼接绕过）</h2><p>查看源代码后，发现它先将后缀名后的<code>.</code>删除，然后删除空格。<br>我们可以把文件后缀改成.<code>php. .</code>,经过代码处理后变成<code>.php.</code>绕过<br>上传php文件，然后抓包，改后缀，蚁剑连接</p>
+<h2 id="Pass-10（双写绕过）"><a href="#Pass-10（双写绕过）" class="headerlink" title="Pass -10（双写绕过）"></a>Pass -10（双写绕过）</h2><p><img src="https://img-blog.csdnimg.cn/4c0950bc838a4af3810687876919640e.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGluanV1bg==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>发现第八行的函数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$file_name = str_ireplace($deny_ext,<span class="string">&quot;&quot;</span>, $file_name);</span><br></pre></td></tr></table></figure>
+<p>这个代码的意思就是把带有黑名单中的后缀替换为空。<br>这时我们考虑双写绕过。如上传的<code>.pphphp</code>就会变成<code>.php</code>绕过</p>
+<p>总结：<br>1-10题都可以用<code>.php. .</code>来绕过</p>
+<h2 id="Pass-11（GET型0x00截断）"><a href="#Pass-11（GET型0x00截断）" class="headerlink" title="Pass -11（GET型0x00截断）"></a>Pass -11（GET型0x00截断）</h2><p>查看源代码，可以得知是一个白名单，只允许上传<code>jpg,png,gif</code>格式的文件。但是上传路径是可以控制的，可以使用<code>%00</code>进行截断。%00只能用于php版本低于5.3的。<br><img src="https://img-blog.csdnimg.cn/88ae34f9666a44eaa3e94b6c5f7d0b50.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGluanV1bg==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>利用正常上传后的文件会保存为：<code>/upload/2.php%002.jpg</code>，文件在读取名字的时候，因为被<code>%00</code>截断，所以只会读取到<code>%00</code>就会被截断停止，从而以<code>php</code>文件执行</p>
+<h2 id="Pass-12（POST型0x00截断）"><a href="#Pass-12（POST型0x00截断）" class="headerlink" title="Pass -12（POST型0x00截断）"></a>Pass -12（POST型0x00截断）</h2><h2 id="Pass-13（图片马）"><a href="#Pass-13（图片马）" class="headerlink" title="Pass -13（图片马）"></a>Pass -13（图片马）</h2><p>分析源代码得：<br><img src="https://img-blog.csdnimg.cn/3ece50e8e9c146c3ab6c94fa25fe5c9f.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGluanV1bg==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>其利用<code>fread函数</code>来判断是否是图片<br>源码意思读取上传文件的前两个字节内容，unpack解码后，使用intval转换为10进制，默认为10进制，根据转换后的结果判断图片类型。</p>
+<p>图片马生成：将图片和脚本放在同一目录下，执行cmd命令，在cmd中执行（这里的图片要是真是的图片）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">copy /b 图片+php脚本 新文件名</span><br></pre></td></tr></table></figure>
+<p>然后上传图片，得到上传后的图片名和地址<br>注意：图片马是运用文件包含漏洞，通过文件包含漏洞来运行图片中得代码，所以需要一个解析文件，来运行图片马，如图：<br><img src="https://img-blog.csdnimg.cn/9c5c07fffc2d4b66965762922f2f9b13.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGluanV1bg==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>解析代码是：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">本页面存在文件包含漏洞，用于测试图片马是否能正常运行！</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="title function_ invoke__">header</span>(<span class="string">&quot;Content-Type:text/html;charset=utf-8&quot;</span>);</span><br><span class="line"><span class="variable">$file</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>];</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$file</span>))&#123;</span><br><span class="line">    <span class="keyword">include</span> <span class="variable">$file</span>;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="title function_ invoke__">show_source</span>(__file__);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span> </span><br></pre></td></tr></table></figure>
+
+<p>其中<code>file</code>是图片地址，得url是：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//5063f052-6da9-4a3d-aa1f-331c250cf86c.node4.buuoj.cn:81/include.php?file=upload/xxx.jpg</span></span><br></pre></td></tr></table></figure>
+<p>当图片马中的代码被解析后，再运用蚁剑连接，其连接url地址就是上面得那个地址</p>
+<h2 id="Pass-14（图片马）"><a href="#Pass-14（图片马）" class="headerlink" title="Pass -14（图片马）"></a>Pass -14（图片马）</h2><p>利用<code>getimagesize($filename)函数</code>判断文件是否为图片</p>
+<h2 id="Pass-15（图片马）"><a href="#Pass-15（图片马）" class="headerlink" title="Pass -15（图片马）"></a>Pass -15（图片马）</h2><p>使用<code>exif_imagetype()函数</code>判断是否为图片文件</p>
+<h2 id="Pass-16（图片马-二次渲染）"><a href="#Pass-16（图片马-二次渲染）" class="headerlink" title="Pass -16（图片马+二次渲染）"></a>Pass -16（图片马+二次渲染）</h2><p>验证过程：判断后缀与MIME类型是否符合要求，符合后生成新图像（内容不正确会失败，返回false，相当于多了一次验证），生成新图像失败就unlink删除，成功就根据系统时间给文件命名，再通过imagejpeg类似函数使用原图像资源创建新图像（二次渲染）。相关函数说明：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">basename</span>(<span class="keyword">string</span> <span class="variable">$path</span> [,<span class="keyword">string</span> <span class="variable">$suffix</span>]) <span class="comment">//返回路径中的文件名部分</span></span><br><span class="line"><span class="title function_ invoke__">imagecreatefromjpeg</span>(<span class="keyword">string</span> <span class="variable">$filename</span>)</span><br><span class="line"><span class="title function_ invoke__">imagecreatefrompng</span>(<span class="keyword">string</span> <span class="variable">$filename</span>) </span><br><span class="line"><span class="title function_ invoke__">imagecreatefromgif</span>(<span class="keyword">string</span> <span class="variable">$filename</span>) <span class="comment">//由文件或URL创建一个新图像，内容不对则失败返回false，成功后返回图像资源</span></span><br><span class="line"><span class="title function_ invoke__">srand</span>([<span class="keyword">int</span> <span class="variable">$seed</span> ]) <span class="comment">//用seed播下随机数发生器种子</span></span><br><span class="line"><span class="title function_ invoke__">strval</span>(<span class="keyword">mixed</span> <span class="variable">$var</span>) <span class="comment">//返回字符串类型的var</span></span><br><span class="line"><span class="title function_ invoke__">imagejpeg</span>(resource <span class="variable">$image</span> [,<span class="keyword">string</span> <span class="variable">$filename</span> [,<span class="keyword">int</span> <span class="variable">$quality</span>]])<span class="comment">//从image图像以filename为文件名创建一个JPEG图像</span></span><br><span class="line"><span class="title function_ invoke__">imagepng</span>(resource <span class="variable">$image</span> [,<span class="keyword">string</span> <span class="variable">$filename</span>]) <span class="comment">//从 image 图像以filename为文件名创建一个PNG图像或文件</span></span><br><span class="line"><span class="title function_ invoke__">imagegif</span>(resource <span class="variable">$image</span> [,<span class="keyword">string</span> <span class="variable">$filename</span>]) <span class="comment">//从 image 图像以filename为文件名创建一个GIF图像或文件</span></span><br></pre></td></tr></table></figure>
+<p>先合成一个gif一个图片马，然后上传，抓包得到上传图片的地址，下载上传的图片，对比上传前的图片，找到未改变的地方（很多地方都可以，但我以为这个地方很小，以为要慢慢找，hhh），插入一句话木马后，再次上传这张图片，得到其新的图片名字，然后就跟上一关差不多，解析图片里面的木马，蚁剑连接。<br>总结：千万不要想当然，用嘴做题，</p>
+<h2 id="Pass-17（白名单验证，条件竞争）"><a href="#Pass-17（白名单验证，条件竞争）" class="headerlink" title="Pass -17（白名单验证，条件竞争）"></a>Pass -17（白名单验证，条件竞争）</h2><p>这一题在buu上面因为访问过于频繁，后面直接被禁了，自己本地有点不太敢搞，我怕我的系统似乎承受不了，，，<br>其原理就是利用它会将我们上传的文件短暂的储存在服务器中，然后</p>
+<h2 id="Pass-18（白名单验证，图片马）"><a href="#Pass-18（白名单验证，图片马）" class="headerlink" title="Pass -18（白名单验证，图片马）"></a>Pass -18（白名单验证，图片马）</h2><p>个人认为这里和13关差不多，只不过这里需要知道上传后图片重命名后土木的名字，然后解析图片马，再用蚁剑连接</p>
+<h2 id="Pass-19（黑名单验证，点号绕过）"><a href="#Pass-19（黑名单验证，点号绕过）" class="headerlink" title="Pass -19（黑名单验证，点号绕过）"></a>Pass -19（黑名单验证，点号绕过）</h2><p>两种方式绕过：<br>1.这里会上传文件的名称，我们可以用burp抓包，然后再修改，改为php，然后用%00截断，再加上jpg后缀，完成绕过<br>2、文件夹的形式，这里会构成upload/xxx.jpg,但如果我们这里修改为<code>upload/upload/xxx.php/.</code>,我们在上传验证的时候，会以为其文件名为<code>.</code><br>但实际上我们上传的文件名确为<code>upload/xxx.php</code></p>
+<h2 id="Pass-20（白名单绕过，图片马）"><a href="#Pass-20（白名单绕过，图片马）" class="headerlink" title="Pass -20（白名单绕过，图片马）"></a>Pass -20（白名单绕过，图片马）</h2><p>数组，分析其代码，得到其上传的时候会将图片名分为数组，分别为：<code>文件名</code> ，<code>.</code>,<code>后缀</code>，在这里我们通过修改其分组，完成上传，将其分组数据修改为：<code>文件名.php/.</code>,<code>  </code>,<code>后缀</code>，类似于文件夹上传，验证的时候会正常通过，最终为：<code>文件名.php/.jpg</code>，但上传后的文件名确为：<code>文件名.php</code></p>
+<p>总结：20到题边看wp，遍做，用了整整一天，怎么说呢！在做题的过程中会遇到很多网上的wp都没提过的问题，比如蚁剑测试连接的时候报错，但保存后却可以正常连接，你敢信？再比如burp抓不到本地的数据包，或者是在改gif图片，对比前后有哪些地方不一样的时候，你以为只是很少的一部分不一样，但其实呢？很容易找出不一样的地方来，emmm，其中还有在本地搭建的时候，要注意php版本的问题，可能现在的php版本不支持，或者其它的设备软件问题，总之在做题的过程中，要学会有自己的思考，要善于运用百度，牢记：纸上得来终觉浅，绝知此事要躬行，还是要多刷题，准备过几天不看wp，自己来个二刷。</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/2022/04/24/burp-%E6%9C%AC%E5%9C%B0%E4%B8%8D%E6%8A%93%E5%8C%85%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" class="pre-post btn btn-default" title='burp 本地不抓包解决办法'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            burp 本地不抓包解决办法</span>
+    </a>
+    
+    
+    <a href="/2022/04/20/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-Upload%201/" class="next-post btn btn-default" title='极客大挑战 2019 Upload 1'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            极客大挑战 2019 Upload 1</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<p>评论系统未开启，无法评论！</p>
+
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-01%EF%BC%88js%E6%A3%80%E6%9F%A5%EF%BC%89"><span class="toc-text">Pass -01（js检查）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-02%EF%BC%88%E5%8F%AA%E9%AA%8C%E8%AF%81Content-type%EF%BC%89"><span class="toc-text">Pass -02（只验证Content-type）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-03%EF%BC%88%E9%BB%91%E5%90%8D%E5%8D%95%E7%BB%95%E8%BF%87%EF%BC%89"><span class="toc-text">Pass -03（黑名单绕过）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-04-%EF%BC%88-htaccess%E7%BB%95%E8%BF%87%EF%BC%89"><span class="toc-text">Pass -04 （.htaccess绕过）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-05%EF%BC%88%E5%A4%A7%E5%B0%8F%E5%86%99%E7%BB%95%E8%BF%87%EF%BC%89"><span class="toc-text">Pass -05（大小写绕过）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-06%EF%BC%88%E7%A9%BA%E6%A0%BC%E7%BB%95%E8%BF%87%EF%BC%89"><span class="toc-text">Pass -06（空格绕过）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-07%EF%BC%88%E7%82%B9%E7%BB%95%E8%BF%87%EF%BC%89"><span class="toc-text">Pass -07（点绕过）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-08%EF%BC%88-DATA%E7%BB%95%E8%BF%87%EF%BC%89"><span class="toc-text">Pass -08（::$DATA绕过）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-09%EF%BC%88%E6%8B%BC%E6%8E%A5%E7%BB%95%E8%BF%87%EF%BC%89"><span class="toc-text">Pass -09（拼接绕过）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-10%EF%BC%88%E5%8F%8C%E5%86%99%E7%BB%95%E8%BF%87%EF%BC%89"><span class="toc-text">Pass -10（双写绕过）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-11%EF%BC%88GET%E5%9E%8B0x00%E6%88%AA%E6%96%AD%EF%BC%89"><span class="toc-text">Pass -11（GET型0x00截断）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-12%EF%BC%88POST%E5%9E%8B0x00%E6%88%AA%E6%96%AD%EF%BC%89"><span class="toc-text">Pass -12（POST型0x00截断）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-13%EF%BC%88%E5%9B%BE%E7%89%87%E9%A9%AC%EF%BC%89"><span class="toc-text">Pass -13（图片马）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-14%EF%BC%88%E5%9B%BE%E7%89%87%E9%A9%AC%EF%BC%89"><span class="toc-text">Pass -14（图片马）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-15%EF%BC%88%E5%9B%BE%E7%89%87%E9%A9%AC%EF%BC%89"><span class="toc-text">Pass -15（图片马）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-16%EF%BC%88%E5%9B%BE%E7%89%87%E9%A9%AC-%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93%EF%BC%89"><span class="toc-text">Pass -16（图片马+二次渲染）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-17%EF%BC%88%E7%99%BD%E5%90%8D%E5%8D%95%E9%AA%8C%E8%AF%81%EF%BC%8C%E6%9D%A1%E4%BB%B6%E7%AB%9E%E4%BA%89%EF%BC%89"><span class="toc-text">Pass -17（白名单验证，条件竞争）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-18%EF%BC%88%E7%99%BD%E5%90%8D%E5%8D%95%E9%AA%8C%E8%AF%81%EF%BC%8C%E5%9B%BE%E7%89%87%E9%A9%AC%EF%BC%89"><span class="toc-text">Pass -18（白名单验证，图片马）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-19%EF%BC%88%E9%BB%91%E5%90%8D%E5%8D%95%E9%AA%8C%E8%AF%81%EF%BC%8C%E7%82%B9%E5%8F%B7%E7%BB%95%E8%BF%87%EF%BC%89"><span class="toc-text">Pass -19（黑名单验证，点号绕过）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pass-20%EF%BC%88%E7%99%BD%E5%90%8D%E5%8D%95%E7%BB%95%E8%BF%87%EF%BC%8C%E5%9B%BE%E7%89%87%E9%A9%AC%EF%BC%89"><span class="toc-text">Pass -20（白名单绕过，图片马）</span></a></li></ol>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2021
+                    
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="/assets/tagcanvas.min.js?rev=2.9.js"></script>
+
+<script>
+var tagOption = {
+    textColour: '#444', // 字体颜色
+    outlineMethod: 'block', // 选中模式
+    outlineColour: '#FFDAB9', // 选中模式的颜色
+    interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+    textHeight: 13,
+    outlineRadius: 3,
+    freezeActive: true || '', // 选中的标签是否继续滚动
+    frontSelect: true || '', // 不选标签云后部的标签
+    initial: [0.1, -0.1],
+    depth: 0.5,
+    decel: 0.95,
+    maxSpeed: 0.03,
+    reverse: true || '', // 是否反向触发
+    fadeIn: 500, // 进入动画时间
+    wheelZoom: false || '' // 是否启用鼠标滚轮
+}
+TagCanvas.Start('tag-cloud-3d', '', tagOption);
+</script>
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+</body>
+</html>

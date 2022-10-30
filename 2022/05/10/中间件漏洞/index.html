@@ -1,0 +1,348 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="我要干饭！">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.3.0">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="http://xjuun.github.io">
+    <!--SEO-->
+
+<meta name="keywords" content="漏洞,中间件" />
+
+
+<meta name="description" content="什么是中间件12345中间件：是一类能够为一种或多种应用程序合作互通、资源共享，同时还能够为该应用程序提供相关的服务的软件。（注意：中间件是一类软件的总称，不是单独的一个软件）我们经常管web中..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    中间件漏洞 |
+    
+    我要干饭！
+</title>
+
+<link rel="alternate" href="/atom.xml" title="我要干饭！" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7.css">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+    
+<div class="hide">
+    <script type="text/javascript">
+    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</div>
+
+
+
+
+    
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='我要干饭！'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://xjuun.github.io">
+                        我要干饭！</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa "></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/CTF/"><i class="fa "></i>
+                                CTF</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/网安笔记/"><i class="fa "></i>
+                                网安笔记</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/语言学习/"><i class="fa "></i>
+                                语言学习</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/小爱好/"><i class="fa "></i>
+                                小爱好</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/工具/"><i class="fa "></i>
+                                工具</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/随笔/"><i class="fa "></i>
+                                随笔</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa "></i>
+                                时间轴</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/about/"><i class="fa "></i>
+                                关于我</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="中间件漏洞">
+            
+            中间件漏洞
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E7%BD%91%E5%AE%89%E7%AC%94%E8%AE%B0/">网安笔记</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" rel="tag">中间件</a> <a class="tag-none-link" href="/tags/%E6%BC%8F%E6%B4%9E/" rel="tag">漏洞</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2022/05/10</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="什么是中间件"><a href="#什么是中间件" class="headerlink" title="什么是中间件"></a>什么是中间件</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">中间件：是一类能够为一种或多种应用程序合作互通、资源共享，同时还能够为该应用程序提供相关的服务的软件。（注意：中间件是一类软件的总称，不是单独的一个软件）</span><br><span class="line"></span><br><span class="line">我们经常管web中间件叫做web服务器或者web容器</span><br><span class="line"></span><br><span class="line">正常情况下一次web的访问顺序是：web浏览器---服务器(硬件)---web容器---web应用服务器---数据库服务器。</span><br></pre></td></tr></table></figure>
+
+<p>常用的中间件：<br>        ISS、Apache、Nginx、Tomcat、shiro、WebLogic、Jboss、WebSphere等</p>
+<p>各中间件漏洞总结：</p>
+<h2 id="ISS："><a href="#ISS：" class="headerlink" title="ISS："></a>ISS：</h2><p><strong>解析漏洞</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">ISS <span class="number">6</span>.x版本</span><br><span class="line"></span><br><span class="line">                 基于文件名</span><br><span class="line"></span><br><span class="line">                         该版本会默认把.asp;.jpg文件当成.asp文件来执行，原理是服务器默认不解析分号;后面的内容，相当于截断。</span><br><span class="line"></span><br><span class="line">                 基于文件夹名</span><br><span class="line"></span><br><span class="line">                         该版本.asp可以作为文件夹名且会默认将.asp/目录下的所有文件当成Asp文件解析。</span><br><span class="line"></span><br><span class="line">                         该版本配置默认将.asa，.cdx，.cer解析为asp</span><br><span class="line"></span><br><span class="line">         ISS7.x版本</span><br><span class="line"></span><br><span class="line">                 在fast-cgi运行模式下，在任意文件例如<span class="number">1</span>.jpg后面加上/.php都会将该文件解析为php文件</span><br></pre></td></tr></table></figure>
+<p>  <strong>PUT任意文件写入</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在web服务扩展中开启WebDAV后，支持多种请求，配合写入权限可造成任意文件写入。</span><br></pre></td></tr></table></figure>
+
+<h2 id="Apache"><a href="#Apache" class="headerlink" title="Apache"></a>Apache</h2><p>   <strong>未知扩展名解析漏洞</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">      Apache对后缀名的解析是从右往左进行的，当遇到未知的后缀名时，会从右往左继续寻找，直到找到合法后缀名从解析，如a.php.xxx会以php文件进行执行。</span><br><span class="line"></span><br><span class="line">AddHandler application/x-httpd-php .php</span><br><span class="line">     这种情况下，只要文件名中包含.php的后缀，文件就会以php文件解析，.php可以不用是最后一个后缀，可利用这种特性构造文件名绕过上传白名单。</span><br></pre></td></tr></table></figure>
+
+<p> <strong>Httpd换行解析漏洞</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">影响版本：<span class="number">2.4</span>.<span class="number">0</span>-<span class="number">2.4</span>.<span class="number">29</span></span><br><span class="line"></span><br><span class="line">由于正则表达式不单匹配字符串的结尾位置，也可以匹配\n,\r，因此在解析php时，如<span class="number">1</span>.php\x0A会被按php后缀解析，导致绕过一些服务器的安全策略。</span><br></pre></td></tr></table></figure>
+
+<p>Nginx<br>        <strong>任意解析漏洞：</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">    小皮面板（<span class="number">8.1</span>.<span class="number">0.4</span>、<span class="number">8.1</span>.<span class="number">0.7</span>）默认配置下存在任意文件解析漏洞：上传图片马，在图片马地址后面加/.php即可执行图片马。</span><br><span class="line">此漏洞为Nginx配置所导致，与Nginx版本无关。</span><br></pre></td></tr></table></figure>
+
+<p><strong>空字节任意代码执行漏洞：</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> 影响版本：<span class="number">0.5</span>.*，<span class="number">0.6</span>.*，<span class="number">0.7</span>&lt;=<span class="number">0.7</span>.<span class="number">65</span>,<span class="number">0.8</span>&lt;=<span class="number">0.8</span>.<span class="number">37</span></span><br><span class="line">若目录下存在一个实际为php文件的a.jpg文件，可通过访问该文件，抓包，修改为a.jpg...php,在hex选项卡中将jpg后的.修改为<span class="number">00</span>即可让文件依旧以php解析。该漏洞不受cgi.fix_pathinfo影响，当其为<span class="number">0</span>时依旧解析。 </span><br></pre></td></tr></table></figure>
+<p><strong>文件名逻辑漏洞</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">影响版本：<span class="number">0.8</span>.<span class="number">41</span>-<span class="number">1.4</span>.<span class="number">3</span>/<span class="number">1.5</span>.<span class="number">0</span>-<span class="number">1.5</span>.<span class="number">7</span></span><br><span class="line">实现方法与上一个相类似，访问a.jpg，抓包修改为a.jpg...php，在hex选项卡中修改jpg后的两个点<span class="number">2</span>e为<span class="number">20</span>,<span class="number">00</span>，即可以php文件解析，该漏洞不受cgi.fix_pathinfo影响，当其为<span class="number">0</span>时依旧解析。</span><br></pre></td></tr></table></figure>
+
+<p>   <strong>CRLF注入</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">这是一项由于配置不当所导致的漏洞。</span><br><span class="line"></span><br><span class="line">       Nginx文档有<span class="number">3</span>个表示uri的变量：<span class="number">1</span>.uri <span class="number">2</span>.document_uri <span class="number">3</span>.<span class="variable">$request_uri</span></span><br><span class="line"></span><br><span class="line">       <span class="number">1</span>,<span class="number">2</span>表示解码以后的请求路径，不带参数，<span class="number">3</span>表示的是完整的URI（没有编码）</span><br><span class="line"></span><br><span class="line">       Nginx会将<span class="number">1</span>，<span class="number">2</span>进行解码，导致传入%<span class="number">0</span>a%<span class="number">0</span>b即可引入换行符，导致CRLF注入漏洞</span><br></pre></td></tr></table></figure>
+<p>  <strong>目录穿越</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在配置Nginx别名时忘记加/，导致访问..可穿越至上级目录。</span><br></pre></td></tr></table></figure>
+
+<p><strong>目录遍历</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">当配置文件中，autoindex值设置为on时，将产生目录遍历漏洞。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Tomcat任意文件写入（CVE-<span class="number">2017</span>-<span class="number">12615</span>）</span><br><span class="line">环境：Tomcat/<span class="number">8.0</span>.<span class="number">30</span></span><br><span class="line">当配置文件/conf/web.xml配置了可写（<span class="keyword">readonly</span>=<span class="literal">false</span>），即可往服务器写文件</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Apache Tomcat远程代码执行（CVE-<span class="number">2019</span>-<span class="number">0232</span>）</span><br><span class="line">            影响范围：<span class="number">9.0</span>.<span class="number">0</span>.M1-<span class="number">9.0</span>.<span class="number">17</span>，<span class="number">8.5</span>.<span class="number">0</span>-<span class="number">8.5</span>.<span class="number">39</span>,<span class="number">7.0</span>.<span class="number">0</span>-<span class="number">7.0</span>.<span class="number">93</span></span><br><span class="line"></span><br><span class="line">   影响系统：windows</span><br><span class="line"></span><br><span class="line">        启用了CGI Servlet（默认为关闭），enableCmdLineArguments（Tomcat <span class="number">9.0</span>.*及官方未来发布版本默认为关闭）</span><br><span class="line"></span><br><span class="line">        由于JRE将命令行参数传递给Windows的方式存在错误，会导致CGI Servlet受到远程执行代码的攻击。</span><br><span class="line"></span><br><span class="line">Tomcat+弱口令&amp;&amp;后台getshell漏洞</span><br><span class="line">        影响范围：Apache Tomcat <span class="number">8</span></span><br></pre></td></tr></table></figure>
+
+
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/2022/05/10/%E5%90%8E%E9%97%A8%E5%AE%89%E5%85%A8%E6%8E%92%E6%9F%A5%EF%BC%88windows%E4%B8%8Elinux%E5%85%A5%E4%BE%B5%E6%8E%92%E6%9F%A5%EF%BC%89/" class="pre-post btn btn-default" title='后门安全排查（Windows与Linux入侵排查）'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            后门安全排查（Windows与Linux入侵排查）</span>
+    </a>
+    
+    
+    <a href="/2022/05/10/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E4%B8%8E%E6%BA%AF%E6%BA%90%E6%96%B9%E6%A1%88/" class="next-post btn btn-default" title='应急响应与溯源方案'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            应急响应与溯源方案</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<p>评论系统未开启，无法评论！</p>
+
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-text">什么是中间件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ISS%EF%BC%9A"><span class="toc-text">ISS：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Apache"><span class="toc-text">Apache</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tomcat"><span class="toc-text">Tomcat</span></a></li></ol>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2021
+                    
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="/assets/tagcanvas.min.js?rev=2.9.js"></script>
+
+<script>
+var tagOption = {
+    textColour: '#444', // 字体颜色
+    outlineMethod: 'block', // 选中模式
+    outlineColour: '#FFDAB9', // 选中模式的颜色
+    interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+    textHeight: 13,
+    outlineRadius: 3,
+    freezeActive: true || '', // 选中的标签是否继续滚动
+    frontSelect: true || '', // 不选标签云后部的标签
+    initial: [0.1, -0.1],
+    depth: 0.5,
+    decel: 0.95,
+    maxSpeed: 0.03,
+    reverse: true || '', // 是否反向触发
+    fadeIn: 500, // 进入动画时间
+    wheelZoom: false || '' // 是否启用鼠标滚轮
+}
+TagCanvas.Start('tag-cloud-3d', '', tagOption);
+</script>
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,363 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="我要干饭！">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.3.0">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="http://xjuun.github.io">
+    <!--SEO-->
+
+<meta name="keywords" content="应急响应,溯源" />
+
+
+<meta name="description" content="
+
+收集信息：收集客户信息和中毒主机信息，包括样本
+判断类型：判断是否是安全事件，何种安全事件，勒索、挖矿、断网、DoS 等等
+抑制范围：隔离使受害⾯不继续扩⼤
+深入分析：日志分析、进程分析、启..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    应急响应与溯源方案 |
+    
+    我要干饭！
+</title>
+
+<link rel="alternate" href="/atom.xml" title="我要干饭！" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7.css">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+    
+<div class="hide">
+    <script type="text/javascript">
+    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</div>
+
+
+
+
+    
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='我要干饭！'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://xjuun.github.io">
+                        我要干饭！</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa "></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/CTF/"><i class="fa "></i>
+                                CTF</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/网安笔记/"><i class="fa "></i>
+                                网安笔记</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/语言学习/"><i class="fa "></i>
+                                语言学习</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/小爱好/"><i class="fa "></i>
+                                小爱好</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/工具/"><i class="fa "></i>
+                                工具</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/随笔/"><i class="fa "></i>
+                                随笔</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa "></i>
+                                时间轴</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/about/"><i class="fa "></i>
+                                关于我</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="应急响应与溯源方案">
+            
+            应急响应与溯源方案
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E7%BD%91%E5%AE%89%E7%AC%94%E8%AE%B0/">网安笔记</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/" rel="tag">应急响应</a> <a class="tag-none-link" href="/tags/%E6%BA%AF%E6%BA%90/" rel="tag">溯源</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2022/05/10</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p><img src="https://img-blog.csdnimg.cn/98e2adde6dcd4c69a6651fecc123ec19.png" alt="在这里插入图片描述"></p>
+<ol>
+<li>收集信息：收集客户信息和中毒主机信息，包括样本</li>
+<li>判断类型：判断是否是安全事件，何种安全事件，勒索、挖矿、断网、DoS 等等</li>
+<li>抑制范围：隔离使受害⾯不继续扩⼤</li>
+<li>深入分析：日志分析、进程分析、启动项分析、样本分析方便后期溯源</li>
+<li>清理处置：杀掉进程，删除文件，打补丁，删除异常系统服务，清除后门</li>
+<li>账号防止事件扩大，处理完毕后恢复生产</li>
+<li>产出报告：整理并输出完整的安全事件报告</li>
+</ol>
+<p>个人认为可以在发现的有情况的时候，马上百度，查找相关事件的信息，自己有把握就处理，没有把握就上报</p>
+<h2 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">信息收集主要是做：</span><br><span class="line">流量、</span><br><span class="line">日志、</span><br><span class="line">可疑进程的内存、</span><br><span class="line">失陷系统镜像、</span><br><span class="line">恶意样本、</span><br><span class="line">客户资产收集、</span><br><span class="line">资产相关漏洞测试报告、</span><br><span class="line">防御设备的日志。【请注意：确认有索取这些信息的权限】</span><br></pre></td></tr></table></figure>
+
+<h2 id="判断事件类型"><a href="#判断事件类型" class="headerlink" title="判断事件类型"></a>判断事件类型</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">事件类型分为<span class="number">7</span>类：</span><br><span class="line">大规模沦陷、</span><br><span class="line">挖矿病毒、</span><br><span class="line">勒索病毒、</span><br><span class="line">无文件落地、</span><br><span class="line">不死（顽固）马、</span><br><span class="line">钓鱼应急响应、</span><br><span class="line">数据劫持。</span><br></pre></td></tr></table></figure>
+
+<h2 id="抑制范围"><a href="#抑制范围" class="headerlink" title="抑制范围"></a>抑制范围</h2><p><strong>（1）切断网络</strong></p>
+<p>情况分很多种：<strong>失陷后业务仍正常运行、失陷后业务受滞、失陷后业务停摆。</strong>不同的情况，网络切断因地制宜。</p>
+<p>切断网络的目的：观察病毒行为、观察流量特征、阻断对内通信、阻断对外连接。</p>
+<p><strong>（2）阻断传播</strong></p>
+<p>传播包括：对内传播（感染）、对外传播（外联）</p>
+<p>对内传播（感染）：进程注入/迁移、第三方软件感染、服务传播（ftp/ssh爆破等）</p>
+<p>对外传播（外联）：挖矿行为、外联攻击、c2通信</p>
+<p>阻断传播应从：软件层面、流量层面、代码层面、网络层面。例如：排查软件被劫持、排查流量发现无文件落地、利用代码审计发现容器加载内存马、阻断网络发现通过服务传播的病毒。</p>
+<p><strong>（3）隔离核心资产/隔离受害主体（群体）</strong></p>
+<p>这一步是应急响应的最终目的，无论实施过程如何、无论使用什么工具都必须保证被保护与沦陷方的隔离。</p>
+<p>隔离核心资产是为了做到三个原则：保护、避害、不损害。</p>
+<p>隔离受害主体（群体）是为了保护第一现场、收集攻击者信息等。</p>
+<h2 id="深入分析"><a href="#深入分析" class="headerlink" title="深入分析"></a>深入分析</h2><p>日志分析、进程分析、启动项分析、样本分析方便后期溯源</p>
+<p><strong>日志</strong>主要注意的是：时间、动作、结果；这个行为什么时候开始、什么时候结束，这个动作是登陆、退出、修改等、造成的结果是登陆成功/失败、上传/下载了文件、执行了代码等。</p>
+<p><strong>流量</strong>主要注意的是：状态码、交互过程、数据合理性；每一次交互的状态码，交互过程中是否符合该种协议的正确交互过程，每个字段的填充、每次流量的渲染是否正常。</p>
+<p><strong>样本</strong>主要注意的是：启动方式、伪装方式、作用；根据启动方式去选择沙箱或者分析工具；伪装方式判断是否加壳做免杀和打击方式；根据作用去判断受害范围。<br><strong>启动项</strong><br><strong>进程</strong><br>粗略的分为静态和动态，日志属于静态信息需要应急人员清晰分辨出日志表达的内容和快速筛选出可疑的点。流量和样本属于动态信息，应急人员需要拥有一定的渗透能力去分辨交互行为。</p>
+<p>（2）行为分析&amp;还原攻击过程</p>
+<p>从行为出发，还原攻击路径，推演攻击过程。</p>
+<p>行为分析基于三大件分析，结合系统表现出来的情况做分析，例如：启动项、启动脚本、进程、内存等。</p>
+<p>还原攻击过程需要对攻击大致的情况有一个综合判断，可以理解为——威胁模型建立（SDL），必须具备渗透能力，再此基础上放入沙箱重新复现攻击过程，对后续的步骤提供帮助。</p>
+<h2 id="清理处置"><a href="#清理处置" class="headerlink" title="清理处置"></a>清理处置</h2><p>杀掉进程，删除文件，打补丁，删除异常系统服务，清除后门，加固没啥好讲的，打补丁、对系统进行限制（网络隔离、行为管理等）、升级防御设备、完善防御流程（防御设备的部署、人员的部署、规则库的升级）<br>账号防止事件扩大，处理完毕后恢复生产</p>
+<h2 id="产出报告"><a href="#产出报告" class="headerlink" title="产出报告"></a>产出报告</h2><p>整理并输出完整的安全事件报告</p>
+<h2 id="溯源方案"><a href="#溯源方案" class="headerlink" title="溯源方案"></a>溯源方案</h2><p><strong>1.攻击源捕获</strong><br>安全设备报警，如扫描IP、威胁阻断、病毒木马、入侵事件等<br>日志与流量分析，异常的通讯流量、攻击源与攻击目标等<br>服务器资源异常，异常的文件、账号、进程、端口，启动项、计划任务和服务等<br>邮件钓鱼，获取恶意文件样本、钓鱼网站 URL 等<br>蜜罐系统，获取攻击者 ID、电脑信息、浏览器指纹、行为、意图的相关信息<br><strong>2.溯源反制手段</strong></p>
+<ol>
+<li>IP 定位技术 根据IP定位物理地址–代理 IP 溯源案例：通过 IP 端口扫描，反向渗透服务器进行分析，最终定位到攻击者相关信息</li>
+<li>ID 追踪术 ID 追踪术，搜索引擎、社交平台、技术论坛、社工库匹配 溯源案例：利用 ID<br>从技术论坛追溯邮箱，继续通过邮箱反追踪真实姓名，通过姓名找到相关简历信息</li>
+<li>网站 url 域名 Whois 查询–注册人姓名、地址、电话和邮箱 –域名隐私保护 溯源案例：通过攻击 IP<br>历史解析记录/域名，对域名注册信息进行溯源分析</li>
+<li>恶意样本分析 提取样本特征、用户名、ID、邮箱、C2 服务器等信息–同源分析 溯源案例：样本分析过程中，发现攻击者的个人 ID 和<br>QQ，成功定位到攻击者</li>
+<li>社交账号 基于 JSONP 跨域，获取攻击者的主机信息、浏览器信息、真实 IP 及社交信息等 利用条件：可以找到相关社交网站的<br>jsonp 接口泄露敏感信息，相关网站登录未注销</li>
+</ol>
+<p>技巧<br>域名、ip 反查目标个人信息<br>支付宝转账，确定目标姓氏<br>淘宝找回密码，确定目标名字<br>企业微信手机号查公司名称<br>REG007 查注册应用、网站<br>程序 PDB 信息泄露</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/2022/05/10/%E4%B8%AD%E9%97%B4%E4%BB%B6%E6%BC%8F%E6%B4%9E/" class="pre-post btn btn-default" title='中间件漏洞'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            中间件漏洞</span>
+    </a>
+    
+    
+    <a href="/2022/05/10/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/" class="next-post btn btn-default" title='nmap与sqlmap使用'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            nmap与sqlmap使用</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<p>评论系统未开启，无法评论！</p>
+
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="toc-text">信息收集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E4%BA%8B%E4%BB%B6%E7%B1%BB%E5%9E%8B"><span class="toc-text">判断事件类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%91%E5%88%B6%E8%8C%83%E5%9B%B4"><span class="toc-text">抑制范围</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%B1%E5%85%A5%E5%88%86%E6%9E%90"><span class="toc-text">深入分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%85%E7%90%86%E5%A4%84%E7%BD%AE"><span class="toc-text">清理处置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%A7%E5%87%BA%E6%8A%A5%E5%91%8A"><span class="toc-text">产出报告</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BA%AF%E6%BA%90%E6%96%B9%E6%A1%88"><span class="toc-text">溯源方案</span></a></li></ol>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2021
+                    
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="/assets/tagcanvas.min.js?rev=2.9.js"></script>
+
+<script>
+var tagOption = {
+    textColour: '#444', // 字体颜色
+    outlineMethod: 'block', // 选中模式
+    outlineColour: '#FFDAB9', // 选中模式的颜色
+    interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+    textHeight: 13,
+    outlineRadius: 3,
+    freezeActive: true || '', // 选中的标签是否继续滚动
+    frontSelect: true || '', // 不选标签云后部的标签
+    initial: [0.1, -0.1],
+    depth: 0.5,
+    decel: 0.95,
+    maxSpeed: 0.03,
+    reverse: true || '', // 是否反向触发
+    fadeIn: 500, // 进入动画时间
+    wheelZoom: false || '' // 是否启用鼠标滚轮
+}
+TagCanvas.Start('tag-cloud-3d', '', tagOption);
+</script>
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+</body>
+</html>

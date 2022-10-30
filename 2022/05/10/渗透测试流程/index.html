@@ -1,0 +1,334 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="我要干饭！">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.3.0">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="http://xjuun.github.io">
+    <!--SEO-->
+
+<meta name="keywords" content="渗透测试" />
+
+
+<meta name="description" content="对于web应用的渗透测试，大致可分为三个阶段：
+
+信息收集、漏洞发现以及漏洞利用
+
+。在实践过程中需要进一步明细测试的流程，以下通过9个阶段来描述渗透测试的整个流程：
+1.明确目标   授权目标..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    渗透测试流程 |
+    
+    我要干饭！
+</title>
+
+<link rel="alternate" href="/atom.xml" title="我要干饭！" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7.css">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+    
+<div class="hide">
+    <script type="text/javascript">
+    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</div>
+
+
+
+
+    
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='我要干饭！'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://xjuun.github.io">
+                        我要干饭！</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa "></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/CTF/"><i class="fa "></i>
+                                CTF</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/网安笔记/"><i class="fa "></i>
+                                网安笔记</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/语言学习/"><i class="fa "></i>
+                                语言学习</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/小爱好/"><i class="fa "></i>
+                                小爱好</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/工具/"><i class="fa "></i>
+                                工具</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/随笔/"><i class="fa "></i>
+                                随笔</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa "></i>
+                                时间轴</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/about/"><i class="fa "></i>
+                                关于我</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="渗透测试流程">
+            
+            渗透测试流程
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E7%BD%91%E5%AE%89%E7%AC%94%E8%AE%B0/">网安笔记</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" rel="tag">渗透测试</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2022/05/10</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>对于web应用的渗透测试，大致可分为三个阶段：</p>
+<blockquote>
+<p>信息收集、漏洞发现以及漏洞利用</p>
+</blockquote>
+<p>。在实践过程中需要进一步明细测试的流程，以下通过9个阶段来描述渗透测试的整个流程：</p>
+<p><strong>1.明确目标</strong>   <strong>授权目标测试的范围和测试程度</strong><br>1）确定范围：测试的范围，如：IP、域名、内外网、整站or部分模块</p>
+<p>2）明确程度：能渗透到什么程度（是发现漏洞为止还是继续利用漏洞）、是否有时间限制、能否修改上传、能否提权…<br>是否允许数据破坏？<br>是否允许阻断业务正常运行？<br>接入方式？外网和内网？<br>渗透过程是否需要考虑社会工程？</p>
+<p><strong>2.分析风险，获得授权</strong><br>分析渗透测试过程中可能产生的风险，如大量测试数据的处理、影响正常业务开展、服务器发生异常的应急、数据备份和恢复、测试人力物力成本…<br>由测试方书写实施方案初稿并提交给客户进行审核。在审核完成后，从客户，获取对测试方进行书面委托授权书，授权测试方进行渗透测试。</p>
+<p><strong>3.信息收集</strong><br>在信息收集阶段，我们需要尽量多的收集关于目标web应用的各种信息，比如：脚本语言的类型、服务器的类型、目录的结构、使用的开源软件、数据库类型、所有链接页面，用到的框架等。<br>利用百度等搜索引擎搜索：获得后台、未授权页面、敏感url等信息</p>
+<p>基础信息：IP，网段，域名，端口<br>系统信息：操作系统版本<br>应用信息：各端口的应用，例如web应用，邮件应用等<br>版本信息：所有探测到的版本<br>服务信息：服务器类型、版本<br>人员信息：域名注册人员信息，web应用中网站发帖人的id，管理员姓名等<br>防护信息：试着看能否探测到防护设备<br><strong>4.漏洞探测（手动&amp;自动）</strong><br>利用上一步中列出的信息，使用相应的漏洞检测是否存在一下漏洞：</p>
+<p>SQL注入漏洞<br>XSS跨站脚本攻击漏洞<br>CSRF跨站请求伪造漏洞<br>文件上传漏洞<br>暴力破解漏洞</p>
+<p><strong>5.漏洞验证</strong><br>将上一步中发现的有可能可以成功利用的全部漏洞都验证一遍。结合实际情况，搭建模拟环境进行试验，成功后再应用于目标中。</p>
+<p><strong>6.信息分析</strong><br>为下一步实施渗透做准备</p>
+<p>精准攻击：准备好上一步探测到的漏洞，用来精准攻击<br>绕过防御机制：是否有防火墙等设备，如何绕过<br>定制攻击路径：最佳工具路径，根据薄弱入口，高内网权限位置，最终目标<br>绕过检测机制：是否有检测机制，流量监控，杀毒软件，恶意代码检测等（免杀）<br>攻击代码：经过试验得来的代码，如xss代码，sql注入语句等<br><strong>7.利用漏洞，获取数据</strong></p>
+<p>实施攻击：根据前几步的结果，进行攻击<br>获取内部信息：基础设施（网络连接，vpn，路由，拓扑等）<br>进一步渗透：内网入侵，敏感目标<br>持续性存在：一般对客户做渗透不需要。rookit，后门，添加管理账号，驻扎手法等<br>清理痕迹：清理相关日志（访问，操作），上传文件等<br><strong>8.信息整理</strong></p>
+<p>整理渗透工具：整理渗透过程中用到的代码，poc，exp等<br>整理收集信息：整理渗透过程中收集到的一切信息<br>整理漏洞信息：整理渗透过程中遇到的各种漏洞，各种脆弱位置信息<br>目的：为了最后形成报告，形成测试结果使用。<br><strong>9.形成报告</strong></p>
+<p>按需整理：按照之前第一步跟客户确定好的范围，需求来整理资料，并将资料形成报告<br>补充介绍：要对漏洞成因，验证过程和带来危害进行分析<br>修补建议：当然要对所有产生的问题提出合理高效安全的解决办</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/2022/05/10/%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%BF%97%EF%BC%88linux%EF%BC%8Cwindows%EF%BC%8C%E4%B8%AD%E9%97%B4%E4%BB%B6%EF%BC%89/" class="pre-post btn btn-default" title='系统日志（Linux，Windows，中间件）'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            系统日志（Linux，Windows，中间件）</span>
+    </a>
+    
+    
+    <a href="/2022/05/07/%E5%8F%8D%E5%BC%B9shell%20%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91/" class="next-post btn btn-default" title='反弹shell与端口转发'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            反弹shell与端口转发</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<p>评论系统未开启，无法评论！</p>
+
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <p>暂无目录</p>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2021
+                    
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="/assets/tagcanvas.min.js?rev=2.9.js"></script>
+
+<script>
+var tagOption = {
+    textColour: '#444', // 字体颜色
+    outlineMethod: 'block', // 选中模式
+    outlineColour: '#FFDAB9', // 选中模式的颜色
+    interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+    textHeight: 13,
+    outlineRadius: 3,
+    freezeActive: true || '', // 选中的标签是否继续滚动
+    frontSelect: true || '', // 不选标签云后部的标签
+    initial: [0.1, -0.1],
+    depth: 0.5,
+    decel: 0.95,
+    maxSpeed: 0.03,
+    reverse: true || '', // 是否反向触发
+    fadeIn: 500, // 进入动画时间
+    wheelZoom: false || '' // 是否启用鼠标滚轮
+}
+TagCanvas.Start('tag-cloud-3d', '', tagOption);
+</script>
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+</body>
+</html>
